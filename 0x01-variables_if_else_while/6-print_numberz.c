@@ -10,7 +10,7 @@ int main(void)
 
 	while (number <= 9)
 	{
-		putchar(number + 48); // ASCII value of '0' is 48
+		putchar(number + 48);
 		number++;
 	}
 
