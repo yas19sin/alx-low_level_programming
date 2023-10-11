@@ -6,24 +6,24 @@
 */
 int main(void)
 {
-	long int a = 1, b = 2, next;
-	int count;
+	int i;
+	long fib[50];
 
-	_putchar('1');
-	_putchar(',');
-	_putchar(' ');
+	fib[0] = 1;
+	fib[1] = 2;
 
-	_putchar('2');
-	for (count = 3; count <= 50; count++)
+	for (i = 2; i < 50; i++)
 	{
-		next = a + b;
-		_putchar(',');
-		_putchar(' ');
-		print_number(next);
-		a = b;
-		b = next;
+		fib[i] = fib[i - 1] + fib[i - 2];
 	}
-	_putchar('\n');
 
+	for (i = 0; i < 50; i++)
+	{
+		printf("%ld", fib[i]);
+		if (i < 49)
+			printf(", ");
+	}
+
+	printf("\n");
 	return (0);
 }

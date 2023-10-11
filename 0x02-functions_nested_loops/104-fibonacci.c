@@ -6,24 +6,19 @@
 */
 int main(void)
 {
-	long int a = 1, b = 2, next;
+	int i;
+	long fib1 = 1, fib2 = 2, temp;
 
-	_putchar('1');
-	_putchar(',');
-	_putchar(' ');
-	_putchar('2');
+	printf("%ld, %ld", fib1, fib2);
 
-	for (int count = 3; count <= 98; count++)
+	for (i = 2; i < 98; i++)
 	{
-		next = a + b;
-		_putchar(',');
-		_putchar(' ');
-		print_number(next);
-		a = b;
-		b = next;
-	}
+		temp = fib1 + fib2;
+		printf(", %ld", temp);
+		fib1 = fib2;
+		fib2 = temp;
+    }
 
-	_putchar('\n');
-
+	printf("\n");
 	return (0);
 }

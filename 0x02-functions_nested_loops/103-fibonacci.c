@@ -6,21 +6,18 @@
 */
 int main(void)
 {
-	long int a = 1, b = 2, next, sum = 2;
+	long fib1 = 1, fib2 = 2, temp, sum = 0;
 
-	while (1)
+	while (fib2 <= 4000000)
 	{
-		next = a + b;
-		if (next > 4000000)
-			break;
-		if (next % 2 == 0)
-			sum += next;
-		a = b;
-		b = next;
+		if (fib2 % 2 == 0)
+			sum += fib2;
+
+		temp = fib1 + fib2;
+		fib1 = fib2;
+		fib2 = temp;
 	}
 
-	print_number(sum);
-	_putchar('\n');
-
+	printf("%ld\n", sum);
 	return (0);
 }
