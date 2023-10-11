@@ -1,4 +1,4 @@
-#include "main.h"
+#include <stdio.h>
 /**
  * main - Entry point
  *
@@ -6,18 +6,17 @@
 */
 int main(void)
 {
-	long fib1 = 1, fib2 = 2, temp, sum = 0;
+	int a = 0, b = 1, next = 0;
+	int sum = 0;
 
-	while (fib2 <= 4000000)
+	while (next < 4000000)
 	{
-		if (fib2 % 2 == 0)
-			sum += fib2;
-
-		temp = fib1 + fib2;
-		fib1 = fib2;
-		fib2 = temp;
+		next = a + b;
+		a = b;
+		b = next;
+		if (next % 2 == 0)
+			sum += next;
 	}
-
-	printf("%ld\n", sum);
+	printf("%i\n", sum);
 	return (0);
 }

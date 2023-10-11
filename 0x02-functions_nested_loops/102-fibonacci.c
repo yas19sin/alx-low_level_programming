@@ -1,4 +1,4 @@
-#include "main.h"
+#include <stdio.h>
 /**
  * main - Entry point
  *
@@ -6,24 +6,22 @@
 */
 int main(void)
 {
-	int i;
-	long fib[50];
+	int i = 0;
+	long int a = 0, b = 1, next;
 
-	fib[0] = 1;
-	fib[1] = 2;
-
-	for (i = 2; i < 50; i++)
+	while (i < 50)
 	{
-		fib[i] = fib[i - 1] + fib[i - 2];
-	}
+		next = a + b;
+		a = b;
+		b = next;
+		printf("%lu", next);
 
-	for (i = 0; i < 50; i++)
-	{
-		printf("%ld", fib[i]);
 		if (i < 49)
+		{
 			printf(", ");
+		}
+		i++;
 	}
-
-	printf("\n");
+	putchar('\n');
 	return (0);
 }

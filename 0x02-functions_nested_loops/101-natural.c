@@ -6,15 +6,18 @@
 */
 int main(void)
 {
+	int c = 0;
 	int sum = 0;
-	int i;
 
-	for (i = 3; i < 1024; i++)
+	while (c < 1024)
 	{
-		if (i % 3 == 0 || i % 5 == 0)
-			sum += i;
-	}
+		if (c % 3 == 0 || c % 5 == 0)
+		{
+			sum += c;
+		}
 
-	printf("%d\n", sum);
+		c++;
+	}
+	printf("%i\n", sum);
 	return (0);
 }
