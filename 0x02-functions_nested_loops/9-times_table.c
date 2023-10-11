@@ -4,26 +4,41 @@
 */
 void times_table(void)
 {
-	int row, column, product;
-
-	for (row = 0; row <= 9; row++)
+	int a = 0;
+	int b;
+	int rep;
+	
+	while (a <= 9)
 	{
-		_putchar('0');
-
-		for (column = 1; column <= 9; column++)
+		b = 0;
+		
+		while (b <= 9)
 		{
-			_putchar(',');
+			rep = a * b;
 
-			product = row * column;
-
-			if (product < 10)
+			if (b == 0)
+			{
+				_putchar('0' + rep);
+			}
+			else if (rep < 10)
 			{
 				_putchar(' ');
+				_putchar('0' + rep);
+			}
+			else
+			{
+				_putchar('0' + rep / 10);
+				_putchar('0' + rep % 10);
 			}
 
-			_putchar('0' + product);
+			if (b < 9)
+			{
+				_putchar(',');
+				_putchar(' ');
+			}
+			b++;
 		}
-
 		_putchar('\n');
+		a++;
 	}
 }
