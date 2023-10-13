@@ -1,13 +1,14 @@
-#include "main.h"
 #include <stdio.h>
 /**
- * fizz_buzz - prints numbers from 1 to 100 with conditions
+ * main - Check the code for Holberton School students.
+ *
+ * Return: void.
 */
-void fizz_buzz(void)
+int main(void)
 {
-	int i;
+	int i = 1;
 
-	for (i = 1; i <= 100; i++)
+	while (i <= 100)
 	{
 		if (i % 3 == 0 && i % 5 == 0)
 		{
@@ -23,13 +24,17 @@ void fizz_buzz(void)
 		}
 		else
 		{
-			printf("%d", i);
+			printf("%i", i);
 		}
 
-		if (i < 100)
+		if (i != 100)
 		{
-			printf(" ");
+			putchar(' ');
 		}
+
+		i++;
 	}
-	printf("\n");
+	putchar('\n');
+
+	return (0);
 }
