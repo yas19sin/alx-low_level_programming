@@ -1,8 +1,13 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 /**
  * print_number - prints an integer
  * @n: the integer to be printed
 */
+
+int _putchar(char c);
+
 void print_number(int n)
 {
     if (n < 0)
