@@ -30,9 +30,6 @@ void fizz_buzz(void)
 		{
 			printf(" ");
 		}
-		else
-		{
-			printf("\n");
-		}
 	}
+	printf("\n");
 }
