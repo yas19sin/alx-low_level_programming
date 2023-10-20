@@ -15,6 +15,7 @@ char *rot13(char *str)
 		if ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z'))
 		{
 			int index = 0;
+
 			while (alpha[index] != '\0')
 			{
 				if (str[i] == alpha[index])
@@ -28,5 +29,5 @@ char *rot13(char *str)
 		i++;
 	}
 
-	return str;
+	return (str);
 }
