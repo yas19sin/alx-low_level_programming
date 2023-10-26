@@ -19,7 +19,7 @@ int is_prime_number(int n)
 */
 int is_prime_helper(int n, int i)
 {
-	if (i >= n)
+	if (i * i > n)
 		return (1);
 	if (n % i == 0)
 		return (0);
