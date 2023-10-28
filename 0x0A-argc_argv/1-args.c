@@ -1,13 +1,14 @@
 #include <stdio.h>
 /**
  * main - Entry point
- * @argc: The number of command-line arguments
- * @argv: An array containing the program command-line arguments
+ * @argc: Argument count
+ * @argv: Argument vector
  *
- * Return: 0 (Success)
+ * Return: 0
 */
-int main(int argc, char *argv[])
+int main(int argc, char *argv[] __attribute__((unused)))
 {
-	printf("%d\n", argc - 1);
+	if (argc > 0)
+		printf("%d\n", argc - 1);
 	return (0);
 }
