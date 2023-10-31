@@ -15,10 +15,14 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	int num1 = atoi(argv[1]);
-	int num2 = atoi(argv[2]);
+	int mul = 0;
 
-	printf("%d\n", num1 * num2);
+	for (i = 1; i < argc; i++)
+	{
+		val *= atoi(argv[i]);
+	}
+
+	printf("%d\n", mul);
 
 	return (0);
 }
