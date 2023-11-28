@@ -1,61 +1,68 @@
 #include "main.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+
 /**
- * copy_file - Copies the content of one file to another
- * @file_from: Source file
- * @file_to: Destination file
- * Return: 0 on success, -1 on failure
-*/
-int copy_file(const char *file_from, const char *file_to)
+ * print_error - Error code and name to a specific format.
+ * @code: The error code to be converted.
+ * @name: The name associated with the error code.
+ * Return: Always returns 0.
+ */
+void print_error(int code, char *name)
 {
-	if (file_from == NULL || file_to == NULL)
+	switch (code)
 	{
-		dprintf(2, "Usage: cp file_from file_to\n");
+	case 98:
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", name);
+		exit(98);
+		break;
+	case 99:
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", name);
+		exit(99);
+		break;
+	}
+}
+
+/**
+ * main - Entry point for the program.
+ * @argc: The number of command line arguments.
+ * @argv: Ar Strings containing the command line arguments.
+ * Return: Always returns 0 to indicate successful execution.
+ */
+int main(int argc, char *argv[])
+{
+	int ffrom, fto, wrt = 0, rd = 0;
+	char buffer[1024];
+
+	if (argc != 3)
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
+	ffrom = open(argv[1], O_RDONLY);
+	if (ffrom == -1)
+		print_error(98, argv[1]);
 
-	int fd_src = open(file_from, O_RDONLY);
+	fto = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	if (fto == -1)
+		print_error(99, argv[2]);
 
-	if (fd_src == -1)
+	while ((rd = read(ffrom, buffer, 1024)))
 	{
-		dprintf(2, "Error: Can't read from file %s\n", file_from);
-		exit(98);
+		if (rd == -1)
+			print_error(98, argv[1]);
+		wrt = write(fto, buffer, rd);
+		if (wrt == -1)
+			print_error(99, argv[2]);
 	}
 
-	int fd_dest = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-
-	if (fd_dest == -1)
+	if (close(ffrom) == -1)
 	{
-		dprintf(2, "Error: Can't write to file %s\n", file_to);
-		exit(99);
-	}
-
-	char buffer[1024];
-	ssize_t bytes_read, bytes_written;
-
-	while ((bytes_read = read(fd_src, buffer, sizeof(buffer))) > 0)
-	{
-		bytes_written = write(fd_dest, buffer, (size_t)bytes_read);
-		if (bytes_written == -1) {
-			dprintf(2, "Error: Can't write to file %s\n", file_to);
-			exit(99);
-		}
-	}
-
-	if (bytes_read == -1)
-	{
-		dprintf(2, "Error: Can't read from file %s\n", file_from);
-		exit(98);
-	}
-
-	if (close(fd_src) == -1 || close(fd_dest) == -1)
-	{
-		dprintf(2, "Error: Can't close fd\n");
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", ffrom);
 		exit(100);
 	}
-
-	return 0;
+	if (close(fto) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fto);
+		exit(100);
+	}
+	return (0);
 }
