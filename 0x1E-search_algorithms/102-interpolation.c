@@ -1,18 +1,18 @@
 #include "search_algos.h"
 
 /**
-  * interpolation_search - Finds the index of a value in a sorted array
-  *                        of integers using interpolation search.
-  * @array: A pointer to the first element of the array to search.
-  * @size: The number of elements in the array.
-  * @value: The value to search for.
-  *
-  * Return: -1 if the value is not present or the array is NULL,
-  *         otherwise the index where the value is located.
-  *
-  * Description: Compares the value to elements in the array using
-  *              a interpolation step.
-  */ 
+ * interpolation_search - Finds the index of a value in a sorted array
+ *                        of integers using interpolation search.
+ * @array: A pointer to the first element of the array to search.
+ * @size: The number of elements in the array.
+ * @value: The value to search for.
+ *
+ * Return: -1 if the value is not present or the array is NULL,
+ *         otherwise the index where the value is located.
+ *
+ * Description: Compares the value to elements in the array using
+ *              a interpolation step.
+ */
 int interpolation_search(int *array, size_t size, int value)
 {
 	size_t i, l, r;
